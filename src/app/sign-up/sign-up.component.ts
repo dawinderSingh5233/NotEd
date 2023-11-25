@@ -6,6 +6,7 @@ import { UtilsService } from '../utils.service';
 import { SignupRequest } from '../models/requestModels';
 import { environment } from 'src/environments/environment';
 import { SignupResponse } from '../models/responseModels';
+import { ToastService } from '../toast/toast.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -63,10 +65,13 @@ export class SignUpComponent implements OnInit {
 
         this.signup(body);
       } else {
-        console.log('password and confirm password doesnot match');
+        this.toastService.createNewToast(
+          'Error',
+          'Password and Confirm Password do not match.'
+        );
       }
     } else {
-      console.log('Form is invalid');
+      this.toastService.createNewToast('Error', 'Invalid Form Data');
     }
   }
 
@@ -77,10 +82,13 @@ export class SignUpComponent implements OnInit {
       this.isLoading = false;
 
       if (response.statusCode === 200) {
-        console.log('user created successfully');
+        this.toastService.createNewToast(
+          'Success',
+          'User Created Successfully.'
+        );
         this.router.navigate(['/login']);
       } else {
-        console.log('Something went wrong');
+        this.toastService.createNewToast('Error', 'Something went Wrong');
       }
     });
   }

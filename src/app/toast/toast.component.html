@@ -1,0 +1,35 @@
+<div
+  class="toast-container"
+  [ngClass]="{
+    success: toastData.status === 'Success',
+    error: toastData.status === 'Error',
+    info: toastData.status === 'Info'
+  }"
+>
+  <div class="row-1">
+    <button (click)="closeBtn()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="row-2">
+    <div class="r2-col-1">
+      <div
+        class="status-icon"
+        [ngSwitch]="toastData.status"
+        [ngClass]="{
+          success: toastData.status === 'Success',
+          error: toastData.status === 'Error',
+          info: toastData.status === 'Info'
+        }"
+      >
+        <i class="fa-solid fa-check" *ngSwitchCase="'Success'"></i>
+        <i class="fa-solid fa-xmark" *ngSwitchCase="'Error'"></i>
+        <i class="fa-solid fa-info" *ngSwitchCase="'Info'"></i>
+      </div>
+    </div>
+    <div class="r2-col-2">
+      <div class="r2-c2-row-1">{{ toastData.status }}</div>
+      <div class="r2-c2-row-2">{{ toastData.message }}</div>
+    </div>
+  </div>
+</div>

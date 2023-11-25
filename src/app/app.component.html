@@ -6,4 +6,11 @@
   <ng-container *ngIf="!isLoading">
     <router-outlet></router-outlet>
   </ng-container>
+
+  <app-toast
+    class="toast"
+    [toastData]="toastData"
+    (close)="hideToast()"
+    [@toastStates]="showToast ? 'open' : 'close'"
+  ></app-toast>
 </div>

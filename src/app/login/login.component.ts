@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/responseModels';
 import { Router } from '@angular/router';
 import { UtilsService } from '../utils.service';
+import { ToastService } from '../toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,10 @@ export class LoginComponent implements OnInit {
       await this.utils.timeout(2000);
       this.login(username, password);
     } else {
-      console.log('Form is invaild');
+      this.toastService.createNewToast(
+        'Error',
+        'Please enter both username and password'
+      );
     }
   }
 
@@ -62,7 +67,7 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigate(['home']);
       } else {
-        console.log('Invalid username/password');
+        this.toastService.createNewToast('Error', 'Invalid Username/Password');
       }
     });
   }
