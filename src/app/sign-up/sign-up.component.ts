@@ -28,13 +28,13 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       emailAddress: new FormControl('', [
         Validators.required,
         Validators.email,
       ]),
       password: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required]),
     });
   }
 
@@ -48,28 +48,22 @@ export class SignUpComponent implements OnInit {
 
   async onSignupBtnClick() {
     if (this.signUpForm.valid) {
-      let username = this.signUpForm.get('username')?.value;
+      let firstName = this.signUpForm.get('firstName')?.value;
+      let lastName = this.signUpForm.get('lastName')?.value;
       let emailAddress = this.signUpForm.get('emailAddress')?.value;
       let password = this.signUpForm.get('password')?.value;
-      let confirmPassword = this.signUpForm.get('confirmPassword')?.value;
 
-      if (password === confirmPassword) {
-        this.isLoading = true;
-        await this.utils.timeout(2000);
+      this.isLoading = true;
+      await this.utils.timeout(2000);
 
-        let body: SignupRequest = {
-          email: emailAddress,
-          userName: username,
-          password: password,
-        };
+      let body: SignupRequest = {
+        email: emailAddress,
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+      };
 
-        this.signup(body);
-      } else {
-        this.toastService.createNewToast(
-          'Error',
-          'Password and Confirm Password do not match.'
-        );
-      }
+      this.signup(body);
     } else {
       this.toastService.createNewToast('Error', 'Invalid Form Data');
     }
@@ -81,7 +75,7 @@ export class SignUpComponent implements OnInit {
     this.http.post<SignupResponse>(url, body).subscribe((response) => {
       this.isLoading = false;
 
-      if (response.statusCode === 200) {
+      if (response.statusCode === 201) {
         this.toastService.createNewToast(
           'Success',
           'User Created Successfully.'

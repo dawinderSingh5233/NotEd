@@ -1,0 +1,48 @@
+<div
+  class="sidebar-container"
+  [ngClass]="{
+    'hide-sidebar': hideSidebar
+  }"
+>
+  <div class="sidebar-top-section">
+    <div class="header-logo-container">
+      <img src="assets/icon/noted-app-logo.png" />
+
+      <div class="toggle-icon">
+        <button class="toggle-btn" (click)="toggleSidebar()">
+          <span class="material-symbols-outlined" *ngIf="hideSidebar">
+            menu
+          </span>
+          <span class="material-symbols-outlined" *ngIf="!hideSidebar">
+            right_panel_open
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="navigation-links">
+      <a class="sidebar-item" routerLinkActive="select" routerLink="home">
+        <div class="sidebar-icon">
+          <span class="material-symbols-outlined"> home </span>
+        </div>
+        <div class="sidebar-text">Home</div>
+      </a>
+
+      <a class="sidebar-item">
+        <div class="sidebar-icon">
+          <span class="material-symbols-outlined"> search </span>
+        </div>
+        <div class="sidebar-text">Search</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-bottom-section">
+    <a class="sidebar-item logout" (click)="onLogoutBtnClick()">
+      <div class="sidebar-icon">
+        <span class="material-symbols-outlined"> logout </span>
+      </div>
+      <div class="sidebar-text">Logout</div>
+    </a>
+  </div>
+</div>

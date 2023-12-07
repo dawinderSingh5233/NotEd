@@ -1,0 +1,69 @@
+<div class="branch-container">
+  <div
+    class="branch-name-container"
+    [ngClass]="{
+      selected: isSelected
+    }"
+  >
+    <button class="branch-actions-btn" (click)="toggleBranch()">
+      <ng-container *ngIf="!isBranchOpen">
+        <i class="fa-solid fa-caret-right"></i>
+      </ng-container>
+      <ng-container *ngIf="isBranchOpen">
+        <i class="fa-solid fa-caret-down"></i>
+      </ng-container>
+    </button>
+    <div class="branch-icon">
+      <i class="fa-regular fa-folder"></i>
+    </div>
+    <div class="temp">
+      <div class="branch-name" (dblclick)="onBranchNameEdit()">
+        <input
+          type="text"
+          [value]="treeNode.branchName"
+          [disabled]="!enableBranchNameEdit"
+          (keyup.enter)="renameBranch($event)"
+          (blur)="renameBranch($event)"
+          #branchNameField
+        />
+      </div>
+
+      <button (click)="removeNode()">
+        <span class="material-symbols-outlined"> delete </span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngIf="
+      (treeNode.childs && treeNode.childs.length > 0) ||
+      (treeNode.pages && treeNode.pages.length > 0)
+    "
+    class="branch-nodes"
+    [ngClass]="{
+      'branch-open': isBranchOpen,
+      'branch-close': !isBranchOpen
+    }"
+  >
+    <div class="childs-container">
+      <ng-container *ngFor="let child of treeNode.childs">
+        <app-branch
+          [treeNode]="child"
+          [currNodePath]="currNodePath + '/' + child.branchName"
+          (onBranchSelect)="branchSelected($event)"
+        ></app-branch>
+      </ng-container>
+    </div>
+
+    <div
+      class="pages-container"
+      [ngClass]="{
+        'padding-top': isPaddingNeededForPages()
+      }"
+    >
+      <ng-container *ngFor="let page of this.treeNode.pages">
+        <app-page [pageData]="page" [parentNodePath]="currNodePath"></app-page>
+      </ng-container>
+    </div>
+  </div>
+</div>

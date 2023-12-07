@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ToastData } from './toast.service';
+import { ToastData } from '../models/dataModels';
 
 @Component({
   selector: 'app-toast',

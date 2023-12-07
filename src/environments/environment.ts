@@ -4,11 +4,24 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080',
+  // apiUrl: 'http://localhost:8080',
+  apiUrl: 'https://noted-65z5.onrender.com',
 
   isAuthenticated: '/auth/loggedin',
   signup: '/auth/signup',
   login: '/auth/login',
+
+  getTreeBranches: '/branch/branchNames',
+  addTreeBranch: '/branch/add-new',
+  renameBranch: '/branch/branch-rename',
+  deleteBranch: '/branch/delete-branch',
+
+  addPage: '/page/add-page',
+  renamePage: '/page/page-rename',
+  deletePage: '/page/delete-page',
+
+  getPageData: '/page/get-page-data',
+  addPageData: '/page/add-page-data',
 };
 
 /*

@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         if (response.token) {
           localStorage.setItem('authorization-token', response.token);
         }
-        this.router.navigate(['home']);
+        this.router.navigate(['dashboard']);
       } else {
         this.toastService.createNewToast('Error', 'Invalid Username/Password');
       }

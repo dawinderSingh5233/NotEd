@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { IsAutenticatedResponse } from './models/responseModels';
 import { Router } from '@angular/router';
 import { UtilsService } from './utils.service';
-import { ToastService, ToastData } from './toast/toast.service';
+import { ToastService } from './toast/toast.service';
 import {
   animate,
   state,
@@ -12,6 +12,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { ToastData } from './models/dataModels';
 
 @Component({
   selector: 'app-root',
@@ -46,10 +47,7 @@ import {
 })
 export class AppComponent implements AfterViewInit {
   isLoading: boolean = true;
-  toastData: ToastData = {
-    status: 'Success',
-    message: 'Testing the toast component',
-  };
+  toastData: ToastData = { status: 'Info', message: 'Login Page Loading' };
   showToast: boolean = false;
 
   constructor(
@@ -76,7 +74,7 @@ export class AppComponent implements AfterViewInit {
       this.http.get<IsAutenticatedResponse>(url).subscribe((response) => {
         this.isLoading = false;
         if (response.statusCode === 200 && response.authenticated === true) {
-          this.router.navigate(['home']);
+          this.router.navigate(['dashboard']);
         } else {
           this.router.navigate(['login']);
         }

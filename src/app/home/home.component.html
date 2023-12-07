@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div class="home-container">
+  <app-tree class="tree"></app-tree>
+
+  <div class="editorOrLoader" *ngIf="isPageSelected">
+    <div class="loader-container" *ngIf="isLoading">
+      <div class="loader"></div>
+    </div>
+    <div class="editor" *ngIf="!isLoading">
+      <app-editor
+        class="editor-pane"
+        [pageData]="pageData"
+        class="editor-pane"
+      ></app-editor>
+    </div>
+  </div>
+</div>

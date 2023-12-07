@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
-export interface ToastData {
-  status: 'Success' | 'Error' | 'Info';
-  message: string;
-}
+import { ToastData } from '../models/dataModels';
 
 @Injectable({
   providedIn: 'root',

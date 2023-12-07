@@ -1,0 +1,107 @@
+.container {
+  width: 300px;
+  height: 100vh;
+  /* background-color: #e9e9e9; */
+  font-family: "Rubik", sans-serif;
+
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow: hidden;
+  resize: horizontal;
+  border-right: 2px solid #e9e9e9;
+}
+
+.tree {
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tree-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 5px;
+}
+
+.tree-title {
+  font-size: 18px;
+}
+
+.tree-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.add-new-file,
+.add-new-folder,
+.refresh-btn {
+  padding: 0;
+  border: none;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.add-new-file span,
+.add-new-folder span,
+.refresh-btn span {
+  font-size: 20px;
+}
+
+.add-new-file:hover,
+.add-new-folder:hover,
+.refresh-btn:hover {
+  color: #1577ea;
+}
+
+.add-new-file:disabled:hover {
+  color: #b7b7b7;
+}
+
+.tree-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.search-bar-input {
+  width: 100%;
+}
+
+.search-bar-input input {
+  font-family: "Rubik", sans-serif;
+  background-color: transparent;
+  height: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.btn-container {
+  margin-bottom: 20px;
+}
+
+button {
+  cursor: pointer;
+  padding: 4px 10px;
+}
